@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
+  {% load static %}  
+  {% load widget_tweaks %}
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <title>Sign Up</title>
+		
+		<!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static '/assets/img/AWK-logo.png' %}">
+
+		<!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static '/assets/css/bootstrap.min.css' %}">
+		
+		<!-- Fontawesome CSS -->
+        <link rel="stylesheet" href="{% static '/assets/css/font-awesome.min.css' %}">
+		
+		<!-- Main CSS -->
+        <link rel="stylesheet" href="{% static '/assets/css/style.css' %}">
+		
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+    </head>
+    <body>
+	
+		<!-- Main Wrapper -->
+        <div class="main-wrapper login-body">
+            <div class="login-wrapper">
+            	<div class="container">
+                	<div class="loginbox">
+                    	<div class="login-left">
+							<img class="img-fluid" src="{% static '/assets/img/aws-login-logo.png' %}" alt="Logo">
+                        </div>
+                        <div class="login-right">
+							<div class="login-right-wrap">
+								<h1>Sign Up</h1>
+								<p class="account-subtitle">Access to our dashboard</p>
+								
+								<!-- Form -->
+								<form method="POST">
+                                {%  csrf_token %}
+                                    <div class="form-group">
+										{{ form.first_name|add_class:"form-control"|attr:"placeholder:First Name" }}
+                                        {{ form.first_name.error }}
+                                        {% if form.first_name.errors %}
+                                        <div class="text-danger">
+                                            {{ form.first_name.errors}}
+                                        </div>
+                                        {% endif %}
+									</div>
+                                    <div class="form-group">
+										{{ form.last_name|add_class:"form-control"|attr:"placeholder:Last Name" }}
+                                        {{ form.last_name.error }}
+                                        {% if form.last_name.errors %}
+                                        <div class="text-danger">
+                                            {{ form.last_name.errors}}
+                                        </div>
+                                        {% endif %}
+									</div>
+									<div class="form-group">
+										{{ form.username|add_class:"form-control"|attr:"placeholder:Username" }}
+                                        {{ form.username.error }}
+                                        {% if form.username.errors %}
+                                        <div class="text-danger">
+                                            {{ form.username.errors}}
+                                        </div>
+                                        {% endif %}
+									</div>
+									<div class="form-group">
+										{{ form.password1|add_class:"form-control"|attr:"placeholder:Password" }}
+                                        {{ form.password1.errors }}
+                                        {% if form.password1.errors %}
+                                        <div class="text-danger">
+                                            {{ form.password1.errors}}
+                                        </div>
+                                        {% endif %}
+									</div>
+                                    <div class="form-group">
+										{{ form.password2|add_class:"form-control"|attr:"placeholder:Confirm Password" }}
+                                        {% if form.password2.errors %}
+                                        <div class="text-danger">
+                                            {{ form.password2.errors}}
+                                        </div>
+                                        {% endif %}
+									</div>
+                                    {% if form.non_field_errors %}
+                                        <div class="text-danger">
+                                            {{ form.non_field_errors}}
+                                        </div>
+                                    {% endif %}
+                                    
+									<div class="form-group">
+										<button class="btn btn-primary btn-block" type="submit">Sign Up</button>
+									</div>
+								</form>
+								<!-- /Form -->
+								
+								<div class="text-center dont-have">Already Registered? <a href="{% url 'login' %}">Login</a></div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<!-- /Main Wrapper -->
+		
+		<!-- jQuery -->
+        <script src="{% static '/assets/js/jquery-3.2.1.min.js' %}"></script>
+		
+		<!-- Bootstrap Core JS -->
+        <script src="{% static '/assets/js/popper.min.js' %}"></script>
+        <script src="{% static '/assets/js/bootstrap.min.js' %}"></script>
+		
+		<!-- Custom JS -->
+		<script src="{% static '/assets/js/script.js' %}"></script>
+		
+    </body>
+
+<!-- Mirrored from dreamguys.co.in/demo/doccure/admin/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 30 Nov 2019 04:12:46 GMT -->
+</html>

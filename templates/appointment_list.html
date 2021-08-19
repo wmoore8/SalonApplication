@@ -1,0 +1,65 @@
+{% extends 'base_temp.html' %}
+
+{% block title %}
+    My Appointments
+{% endblock %}
+<!-- Recent Orders -->
+{% block content %}
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">Appointments</h3>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="DataTables_Table_0_length">
+                            <label><a href='{{appointment_form.get_absolute_url}}' class="btn btn-primary">Create New Appointment</a></label>
+                        </div>
+                    </div>
+                </div>
+                <table class="datatable table table-hover table-center mb-0">
+                    <thead>
+                        <tr>
+                            <th>Stylist</th>
+                            <th>Customer</th>
+                            <th>Service</th>
+                            <th>Apointment Time</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for instance in appointment_list %}
+                            <tr>
+                                <td>
+                                    {{instance.stylist}}
+                                </td>
+                                <td>
+                                    {{instance.customer}}
+                                </td>
+                                <td>
+                                    {{instance.service}}
+                                </td>
+                                <td>
+                                    {{instance.start_date}} at {{instance.start_time}}
+                                </td>
+                                <td>
+                                    ${{instance.service.price}}
+                                </td>
+                                <td>
+                                    <a href='{{instance.get_absolute_url}}' class="btn btn-primary">View</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!-- /Recent Orders -->

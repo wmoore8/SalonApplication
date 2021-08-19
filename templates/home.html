@@ -1,0 +1,25 @@
+
+
+{% extends 'base_temp.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h3 class="page-title">Dashboard</h3>
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2> <a href='/appointments'>View My Appointments</a> </h2>
+            <br/>
+        </div>
+    {% else %}
+        You have been logged out of your account. Log in here:
+        <br/>
+        <br/>
+
+        <a href="{% url 'login' %}" class="btn btn-primary">Log In </a>
+    {% endif %}
+{% endblock %}

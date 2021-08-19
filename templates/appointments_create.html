@@ -1,0 +1,85 @@
+{% extends 'base_temp.html' %}
+
+{% block title %}
+    Create Appointment
+{% endblock %}
+
+{% load widget_tweaks %}
+{% block content %}
+    <div class="page-header">
+        <div class="row">
+            <div class="col-sm-12">
+                <h3 class="page-title">Create New Appointment</h3>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div class="col-xl-10 d-flex">
+            <div class="card flex-fill">
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label">Service</label>
+                            <div class="col-lg-9">
+                                {{ form.service|add_class:"form-control" }}
+                                {{ form.service.error }}
+                                {% if form.service.errors %}
+                                <div class="text-danger">
+                                    {{ form.service.errors}}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label">Stylist</label>
+                            <div class="col-lg-9">
+                                {{ form.stylist|add_class:"form-control" }}
+                                {{ form.stylist.error }}
+                                {% if form.stylist.errors %}
+                                <div class="text-danger">
+                                    {{ form.stylist.errors}}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label">Start Date</label>
+                            <div class="col-lg-9">
+                                {{ form.start_date|add_class:"form-control" }}
+                                {{ form.start_date.error }}
+                                {% if form.start_date.errors %}
+                                <div class="text-danger">
+                                    {{ form.start_date.errors}}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-lg-2 col-form-label">Start Time</label>
+                            <div class="col-lg-9">
+                                {{ form.start_time|add_class:"form-control" }}
+                                {{ form.start_time.error }}
+                                {% if form.start_time.errors %}
+                                <div class="text-danger">
+                                    {{ form.start_time.errors}}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-block">Book Appointment</button>
+                        </div>
+                        <div class="mt-1">
+                            <a href='../' class="btn btn-danger btn-block">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

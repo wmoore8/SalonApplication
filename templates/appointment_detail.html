@@ -1,0 +1,140 @@
+{% extends 'base_temp.html' %}
+
+{% load widget_tweaks %}
+{% block title %}
+    Add Comment
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div class="row">
+        <div class="col-sm-12">
+            <h3 class="page-title">Appointments Details</h3>
+        </div>
+    </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="profile-header">
+      <div class="row align-items-center">
+        <div class="col ml-md-n2 profile-user-info">
+          <h4 class="user-name mb-0">{{appointment.service}} - {{appointment.start_date}} at {{appointment.start_time}}</h4>
+          <div class="about-text">
+          <br/>
+            Stylist: {{appointment.stylist}}
+            <br/>
+            Customer: {{appointment.customer}}
+            <br/>
+            Service: {{appointment.service}}
+            <br/>
+            Price: {{appointment.service.price}}
+            <br/>
+          </div>
+        </div>
+        <div class="col-auto profile-btn">
+          {% comment %} <a href="{{appointment.get_absolute_url}}delete" class="btn btn-danger">
+           {% endcomment %}
+           <a class="btn btn-danger" data-toggle="modal" href="#delete_appointment" class="btn btn-danger">
+           
+            Cancel This Appointment
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="profile-menu">
+      <ul class="nav nav-tabs nav-tabs-solid">
+        <li class="nav-item">
+          <a class="nav-link active" href="/appointments">View My Appointments</a>
+        </li>
+      </ul>
+    </div>	
+    <div class="tab-content profile-tab-cont">
+      
+      <div class="tab-pane fade show active" id="per_details_tab">
+      
+        <!-- Appointment Comment -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title d-flex justify-content-between">
+                  <span>Appointment Comments</span> 
+                </h5>
+                <div>
+                    {% for comment in appointment.appointment_comments %}
+                      <div class="row">
+                          <p class="col-sm-12">{{ comment.body|linebreaks }}<p/>
+                          <p class="col-sm-12">
+                            - {{ comment.author }} posted on {{ comment.created_date }}
+                          </p>
+                      </div>
+                    {% empty %}
+                      <p class="col-sm-10">There are no comments yet.</p>
+                    {% endfor %}
+                </div>
+                <div class="row">
+                {% if new_comment %}
+                  <p class="col-sm-10">
+                    Your comment has been added. <a href='{{appointment.get_absolute_url}}'>Add another comment</a>
+                  </p>
+                {% else %}
+                    <form method="post" class="col-sm-10">
+                      {% csrf_token %}
+
+                      <div class="form-group">
+                        {{ comment_form.body|add_class:"form-control"|attr:"placeholder:Add your comments" }}
+                          {% if comment_form.body.errors %}
+                          <div class="text-danger">
+                              {{ comment_form.body.errors}}
+                          </div>
+                          {% endif %}
+                      </div>
+                      {{ form.non_field_errors }}
+                      <div class="form-group">
+                        <button class="btn btn-primary btn-block" type="submit">Add comment</button>
+                      </div>
+                    </form>
+                {% endif %}
+                </div>
+              </div>
+            </div>
+                     
+          </div>
+
+        
+        </div>
+        <!-- Appointment Comment -->
+
+        <!-- Delete Appointment Tab -->
+          <div class="modal fade" id="delete_appointment" aria-hidden="true" role="dialog">
+              <div class="modal-dialog modal-dialog-centered" role="document" >
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Delete Appointment</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="POST" action="{{appointment.get_absolute_url}}delete/">
+                      {% csrf_token %}
+                      <div class="row form-row">
+                        <div class="form-group">
+                            <label>
+                              <h5> Are you sure you want to cancel your {{ appointment.service }} with {{ appointment.stylist }} on {{ appointment.start_date }} at {{ appointment.start_time }}? </h5>
+                            </label>
+                          </div>
+                      </div>
+                      <button type="submit" class="btn btn-danger btn-block">Yes, Delete Appointment</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- /Delete Appointment Tab -->
+      </div>
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

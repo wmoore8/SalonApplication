@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Delete Appointment
+{% endblock %}
+
+{% block content %}
+    <form action='' method='POST'>{% csrf_token %}
+        <h3>
+            Are you sure you want to cancel your {{ obj.service }} with {{ obj.stylist }} on {{ obj.start_date }} at {{ obj.start_time }}?
+        </h3>
+        <p> <br/>
+            <input type='submit' value='Yes' />
+            <br/>
+
+            <br/>
+            <a href='{{obj.get_absolute_url}}'>No</a>
+
+        </p>
+
+{% endblock %}

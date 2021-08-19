@@ -1,0 +1,31 @@
+<!doctype html>
+<style>
+    h3 {
+        margin-bottom: -10px;
+    }
+    h4 {
+        margin-inline-start: 50px;
+        margin-bottom: -10px;
+    }
+    p {
+        margin-inline-start: 50px;
+        margin-bottom: -10px;
+
+    }
+
+</style>
+
+<html>
+    <body>
+    <head>
+        <title>
+            {% block title %}
+                Default Title
+            {% endblock %}
+        </title>
+    </head>
+        {% block content %}
+            base content placeholder
+        {% endblock %}
+    </body>
+</html>
